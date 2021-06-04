@@ -54,6 +54,7 @@ namespace WindowsFormsApp1
             this.dgvGolf.RowTemplate.Height = 24;
             this.dgvGolf.Size = new System.Drawing.Size(538, 323);
             this.dgvGolf.TabIndex = 0;
+            this.dgvGolf.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGolf_CellContentClick);
             // 
             // btnload_db
             // 

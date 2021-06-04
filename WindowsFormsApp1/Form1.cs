@@ -97,6 +97,34 @@ namespace WindowsFormsApp1
                 //MessageBox.Show("Datatable not loading");
             }
         }
+
+        private void dgvGolf_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                //show the data in the DGV in the text boxes
+                string newvalue = dgvGolf.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                //show the output on the header
+                this.Text = "Row : " + e.RowIndex.ToString() + " Col : " +
+                e.ColumnIndex.ToString() + " Value = " + newvalue;
+                //pass data to the text boxes
+                txtid.Text = dgvGolf.Rows[e.RowIndex].Cells[0].Value.ToString();
+                txttitle.Text = dgvGolf.Rows[e.RowIndex].Cells[1].Value.ToString();
+                txtfirstname.Text = dgvGolf.Rows[e.RowIndex].Cells[2].Value.ToString();
+                txtsurname.Text = dgvGolf.Rows[e.RowIndex].Cells[3].Value.ToString();
+                txtgender.Text = dgvGolf.Rows[e.RowIndex].Cells[4].Value.ToString();
+                txtdob.Text = dgvGolf.Rows[e.RowIndex].Cells[5].Value.ToString();
+                txtstreet.Text = dgvGolf.Rows[e.RowIndex].Cells[6].Value.ToString();
+                txtsuburb.Text = dgvGolf.Rows[e.RowIndex].Cells[7].Value.ToString();
+                txtcity.Text = dgvGolf.Rows[e.RowIndex].Cells[8].Value.ToString();
+                txtavailable.Text = dgvGolf.Rows[e.RowIndex].Cells[9].Value.ToString();
+                txthandicap.Text = dgvGolf.Rows[e.RowIndex].Cells[10].Value.ToString();
+            }
+            catch
+            {
+            }
+
+        }
     }
         
     
