@@ -32,8 +32,8 @@ namespace WindowsFormsApp1
             this.dgvGolf = new System.Windows.Forms.DataGridView();
             this.btnload_db = new System.Windows.Forms.Button();
             this.txtid = new System.Windows.Forms.TextBox();
+            this.txtfirstnamee = new System.Windows.Forms.TextBox();
             this.txtsurname = new System.Windows.Forms.TextBox();
-            this.txtfirstname = new System.Windows.Forms.TextBox();
             this.txttitle = new System.Windows.Forms.TextBox();
             this.txtgender = new System.Windows.Forms.TextBox();
             this.txtdob = new System.Windows.Forms.TextBox();
@@ -42,6 +42,9 @@ namespace WindowsFormsApp1
             this.txtcity = new System.Windows.Forms.TextBox();
             this.txtavailable = new System.Windows.Forms.TextBox();
             this.txthandicap = new System.Windows.Forms.TextBox();
+            this.btninsert = new System.Windows.Forms.Button();
+            this.btnupdate = new System.Windows.Forms.Button();
+            this.btndelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGolf)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,6 +57,7 @@ namespace WindowsFormsApp1
             this.dgvGolf.RowTemplate.Height = 24;
             this.dgvGolf.Size = new System.Drawing.Size(538, 323);
             this.dgvGolf.TabIndex = 0;
+            this.dgvGolf.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGolf_CellContentClick);
             this.dgvGolf.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGolf_CellContentClick);
             // 
             // btnload_db
@@ -73,19 +77,19 @@ namespace WindowsFormsApp1
             this.txtid.Size = new System.Drawing.Size(100, 22);
             this.txtid.TabIndex = 2;
             // 
+            // txtfirstnamee
+            // 
+            this.txtfirstnamee.Location = new System.Drawing.Point(297, 384);
+            this.txtfirstnamee.Name = "txtfirstnamee";
+            this.txtfirstnamee.Size = new System.Drawing.Size(100, 22);
+            this.txtfirstnamee.TabIndex = 3;
+            // 
             // txtsurname
             // 
-            this.txtsurname.Location = new System.Drawing.Point(297, 384);
+            this.txtsurname.Location = new System.Drawing.Point(513, 384);
             this.txtsurname.Name = "txtsurname";
             this.txtsurname.Size = new System.Drawing.Size(100, 22);
-            this.txtsurname.TabIndex = 3;
-            // 
-            // txtfirstname
-            // 
-            this.txtfirstname.Location = new System.Drawing.Point(513, 384);
-            this.txtfirstname.Name = "txtfirstname";
-            this.txtfirstname.Size = new System.Drawing.Size(100, 22);
-            this.txtfirstname.TabIndex = 4;
+            this.txtsurname.TabIndex = 4;
             // 
             // txttitle
             // 
@@ -143,11 +147,44 @@ namespace WindowsFormsApp1
             this.txthandicap.Size = new System.Drawing.Size(100, 22);
             this.txthandicap.TabIndex = 12;
             // 
+            // btninsert
+            // 
+            this.btninsert.Location = new System.Drawing.Point(1053, 51);
+            this.btninsert.Name = "btninsert";
+            this.btninsert.Size = new System.Drawing.Size(75, 23);
+            this.btninsert.TabIndex = 13;
+            this.btninsert.Text = "insert";
+            this.btninsert.UseVisualStyleBackColor = true;
+            this.btninsert.Click += new System.EventHandler(this.btninsert_Click);
+            // 
+            // btnupdate
+            // 
+            this.btnupdate.Location = new System.Drawing.Point(1053, 116);
+            this.btnupdate.Name = "btnupdate";
+            this.btnupdate.Size = new System.Drawing.Size(75, 23);
+            this.btnupdate.TabIndex = 14;
+            this.btnupdate.Text = "update";
+            this.btnupdate.UseVisualStyleBackColor = true;
+            this.btnupdate.Click += new System.EventHandler(this.btnupdate_Click);
+            // 
+            // btndelete
+            // 
+            this.btndelete.Location = new System.Drawing.Point(1053, 183);
+            this.btndelete.Name = "btndelete";
+            this.btndelete.Size = new System.Drawing.Size(75, 23);
+            this.btndelete.TabIndex = 15;
+            this.btndelete.Text = "delete";
+            this.btndelete.UseVisualStyleBackColor = true;
+            this.btndelete.Click += new System.EventHandler(this.btndelete_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1289, 523);
+            this.Controls.Add(this.btndelete);
+            this.Controls.Add(this.btnupdate);
+            this.Controls.Add(this.btninsert);
             this.Controls.Add(this.txthandicap);
             this.Controls.Add(this.txtavailable);
             this.Controls.Add(this.txtcity);
@@ -156,8 +193,8 @@ namespace WindowsFormsApp1
             this.Controls.Add(this.txtdob);
             this.Controls.Add(this.txtgender);
             this.Controls.Add(this.txttitle);
-            this.Controls.Add(this.txtfirstname);
             this.Controls.Add(this.txtsurname);
+            this.Controls.Add(this.txtfirstnamee);
             this.Controls.Add(this.txtid);
             this.Controls.Add(this.btnload_db);
             this.Controls.Add(this.dgvGolf);
@@ -175,8 +212,8 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.DataGridView dgvGolf;
         private System.Windows.Forms.Button btnload_db;
         private System.Windows.Forms.TextBox txtid;
+        private System.Windows.Forms.TextBox txtfirstnamee;
         private System.Windows.Forms.TextBox txtsurname;
-        private System.Windows.Forms.TextBox txtfirstname;
         private System.Windows.Forms.TextBox txttitle;
         private System.Windows.Forms.TextBox txtgender;
         private System.Windows.Forms.TextBox txtdob;
@@ -185,6 +222,9 @@ namespace WindowsFormsApp1
         private System.Windows.Forms.TextBox txtcity;
         private System.Windows.Forms.TextBox txtavailable;
         private System.Windows.Forms.TextBox txthandicap;
+        private System.Windows.Forms.Button btninsert;
+        private System.Windows.Forms.Button btnupdate;
+        private System.Windows.Forms.Button btndelete;
     }
 }
 

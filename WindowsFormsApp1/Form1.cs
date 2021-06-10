@@ -20,6 +20,7 @@ namespace WindowsFormsApp1
         public Form1()
         {
             InitializeComponent();
+            Con.ConnectionString = connectionString;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -110,8 +111,8 @@ namespace WindowsFormsApp1
                 //pass data to the text boxes
                 txtid.Text = dgvGolf.Rows[e.RowIndex].Cells[0].Value.ToString();
                 txttitle.Text = dgvGolf.Rows[e.RowIndex].Cells[1].Value.ToString();
-                txtfirstname.Text = dgvGolf.Rows[e.RowIndex].Cells[2].Value.ToString();
-                txtsurname.Text = dgvGolf.Rows[e.RowIndex].Cells[3].Value.ToString();
+                txtsurname.Text = dgvGolf.Rows[e.RowIndex].Cells[2].Value.ToString();
+                txtfirstnamee.Text = dgvGolf.Rows[e.RowIndex].Cells[3].Value.ToString();
                 txtgender.Text = dgvGolf.Rows[e.RowIndex].Cells[4].Value.ToString();
                 txtdob.Text = dgvGolf.Rows[e.RowIndex].Cells[5].Value.ToString();
                 txtstreet.Text = dgvGolf.Rows[e.RowIndex].Cells[6].Value.ToString();
@@ -124,6 +125,46 @@ namespace WindowsFormsApp1
             {
             }
 
+        }
+
+        private void btninsert_Click(object sender, EventArgs e)
+        {
+            // this puts the parameters into the code so that the data in the text boxes is added to the database
+
+            string NewEntry = "INSERT INTO Golf (Title, Firstname, Surname, Gender, DOB, Street, Suburb, City, [Available week days], Handicap) VALUES(@title, @firstname, @Surname, @Gender, @DOB, @Street, @Suburb, @City, @Available,@Handicap)";
+             using (SqlCommand newdata = new SqlCommand(NewEntry, Con))
+            {
+                newdata.Parameters.AddWithValue("@Title", txttitle.Text);
+                newdata.Parameters.AddWithValue("@Firstname", txtfirstnamee.Text);
+                newdata.Parameters.AddWithValue("@Surname", txtsurname.Text);
+                newdata.Parameters.AddWithValue("@Street", txtstreet.Text);
+                newdata.Parameters.AddWithValue("@Suburb", txtsuburb.Text);
+                newdata.Parameters.AddWithValue("@City", txtcity.Text);
+                newdata.Parameters.AddWithValue("@Gender", txtgender.Text);
+                newdata.Parameters.Add("@DOB", SqlDbType.DateTime).Value = txtdob.Text;
+                newdata.Parameters.AddWithValue("@Handicap", txthandicap.Text);
+                newdata.Parameters.AddWithValue("@Available", txtavailable.Text);
+                Con.Open(); //open a connection to the database
+                            //its a NONQuery as it doesn't return any data its only going up to the server
+                newdata.ExecuteNonQuery(); //Run the Query
+                Con.Close(); //Close a connection to the database
+                             //a happy message box
+
+                MessageBox.Show("Data has been Inserted !! ");
+            }
+            //Run the LoadDatabase method we made earler to see the new data.
+            loaddb();
+
+        }
+
+        private void btnupdate_Click(object sender, EventArgs e)
+        {
+            
+
+        }
+
+        private void btndelete_Click(object sender, EventArgs e)
+        {
         }
     }
         
