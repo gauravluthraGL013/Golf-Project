@@ -186,6 +186,13 @@ namespace WindowsFormsApp1
 
         private void btndelete_Click(object sender, EventArgs e)
         {
+            string DeleteCommand = "Delete Golf where ID = @ID";
+            SqlCommand DeleteData = new SqlCommand(DeleteCommand, Con);
+            DeleteData.Parameters.AddWithValue("@ID", txtid.Text);
+            Con.Open();
+            DeleteData.ExecuteNonQuery();
+            Con.Close();
+            loaddb();
         }
     }
         
