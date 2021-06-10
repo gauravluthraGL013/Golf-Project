@@ -159,7 +159,28 @@ namespace WindowsFormsApp1
 
         private void btnupdate_Click(object sender, EventArgs e)
         {
-            
+            //this updates existing data in the database where the ID of the data equals the ID in  the text box
+
+            string updatestatement = "UPDATE Golf set Title=@Title, Firstname=@Firstname, Surname=@Surname, Gender = @Gender, DOB = @DOB, Street = @Street, Suburb = @Suburb, City = @City, [Available week days]= @Available, Handicap = @Handicap where ID = @ID";
+            SqlCommand update = new SqlCommand(updatestatement, Con);
+            //create the parameters and pass the data from the textboxes
+            update.Parameters.AddWithValue("@ID", txtid.Text);
+            update.Parameters.AddWithValue("@Title", txttitle.Text);
+            update.Parameters.AddWithValue("@Firstname", txtfirstnamee.Text);
+            update.Parameters.AddWithValue("@Surname", txtsurname.Text);
+            update.Parameters.AddWithValue("@Street", txtstreet.Text);
+            update.Parameters.AddWithValue("@Suburb", txtsuburb.Text);
+            update.Parameters.AddWithValue("@City", txtcity.Text);
+            update.Parameters.AddWithValue("@Gender", txtgender.Text);
+            update.Parameters.Add("@DOB", SqlDbType.DateTime).Value = txtdob.Text;
+            update.Parameters.AddWithValue("@Handicap", txthandicap.Text);
+            update.Parameters.AddWithValue("@Available", txtavailable.Text);
+            Con.Open();
+            //its NONQuery as data is only going up
+            update.ExecuteNonQuery();
+            Con.Close();
+            loaddb();
+
 
         }
 
